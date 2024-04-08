@@ -1,0 +1,15 @@
+import RecipeSearch from "@/components/RecipeSearch";
+import ButtonAppBar from "@/components/ButtonAppBar";
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+
+export default function Home() {
+  return (
+    <div>
+      <ButtonAppBar />
+      <RecipeSearch />
+    </div>
+  );
+}
