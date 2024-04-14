@@ -12,7 +12,7 @@ const DiscoverTags = [
   { text: "Chicken", query: "&q=chicken" },
 ];
 
-const DiscoverRecipes = () => {
+export default DiscoverRecipes = () => {
   const appId = process.env.NEXT_PUBLIC_APPID;
   const apiKey = process.env.NEXT_PUBLIC_APIKEY;
   const [searchQuery, setSearchQuery] = useState("");
@@ -60,5 +60,3 @@ const DiscoverRecipes = () => {
     </div>
   );
 };
-
-export default DiscoverRecipes;
