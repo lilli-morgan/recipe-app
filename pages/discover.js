@@ -3,21 +3,21 @@ import RecipeGrid from "@/components/RecipeGrid";
 import Button from "@mui/material/Button";
 import ButtonAppBar from "@/components/ButtonAppBar";
 
-const DiscoverTags = [
-  { text: "Breakfast", query: "&mealType=Breakfast" },
-  { text: "Lunch", query: "&mealType=Lunch" },
-  { text: "Dinner", query: "&mealType=Dinner" },
-  { text: "Vegan", query: "&health=vegan" },
-  { text: "Vegetarian", query: "&health=vegetarian" },
-  { text: "Chicken", query: "&q=chicken" },
-];
-
-export default DiscoverRecipes = () => {
+const DiscoverRecipes = () => {
   const appId = process.env.NEXT_PUBLIC_APPID;
   const apiKey = process.env.NEXT_PUBLIC_APIKEY;
   const [searchQuery, setSearchQuery] = useState("");
   const [error, setError] = useState(null);
   const [recipes, setRecipes] = useState([]);
+
+  const DiscoverTags = [
+    { text: "Breakfast", query: "&mealType=Breakfast" },
+    { text: "Lunch", query: "&mealType=Lunch" },
+    { text: "Dinner", query: "&mealType=Dinner" },
+    { text: "Vegan", query: "&health=vegan" },
+    { text: "Vegetarian", query: "&health=vegetarian" },
+    { text: "Chicken", query: "&q=chicken" },
+  ];
 
   const addTag = (query) => {
     setSearchQuery(query);
@@ -60,3 +60,5 @@ export default DiscoverRecipes = () => {
     </div>
   );
 };
+
+export default DiscoverRecipes;
