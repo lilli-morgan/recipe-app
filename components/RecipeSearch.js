@@ -26,6 +26,7 @@ const RecipeSearch = () => {
       const data = await response.json();
       if (data && data.hits) {
         setRecipes(data.hits);
+        console.log(data);
       } else {
         setRecipes([]);
       }
@@ -91,5 +92,4 @@ const RecipeSearch = () => {
     </div>
   );
 };
-
 export default RecipeSearch;

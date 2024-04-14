@@ -32,7 +32,6 @@ export default function RecipeGrid({ recipes }) {
           </Card>
         </Grid>
       ))}
-      ;
     </Grid>
   );
 }
