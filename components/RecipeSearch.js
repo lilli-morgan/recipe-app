@@ -5,9 +5,14 @@ import Button from "@mui/material/Button";
 import { Box } from "@mui/material";
 import Typography from "@mui/material/Typography";
 
-const RecipeSearch = () => {
+const RecipeSearch = ({
+  recipes,
+  setRecipes,
+  shoppingList,
+  setShoppingList,
+}) => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [recipes, setRecipes] = useState([]);
+
   const [error, setError] = useState(null);
   const appId = process.env.NEXT_PUBLIC_APPID;
   const apiKey = process.env.NEXT_PUBLIC_APIKEY;
@@ -16,8 +21,9 @@ const RecipeSearch = () => {
     try {
       const url = `https://api.edamam.com/api/recipes/v2?q=${searchQuery}&type=public&app_id=${appId}&app_key=${apiKey}`;
 
+      console.log("Fetching recipes...");
+
       const response = await fetch(url);
-      //   console.log("RESPONSE: ", response);
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -25,10 +31,12 @@ const RecipeSearch = () => {
 
       const data = await response.json();
       if (data && data.hits) {
+        console.log("Updating recipes state...");
         setRecipes(data.hits);
         console.log(data);
       } else {
         setRecipes([]);
+        setError("No recipes found");
       }
       setError(null);
     } catch (error) {
@@ -50,8 +58,8 @@ const RecipeSearch = () => {
           padding: "20px",
         }}
       >
-        <Typography variant="h1" padding="30px">
-          Recipe Book
+        <Typography variant="h2" padding="30px">
+          Search for a recipe
         </Typography>
         <Box
           sx={{
@@ -87,7 +95,14 @@ const RecipeSearch = () => {
           </form>
           {error && <Typography color="error">{error}</Typography>}
         </Box>
-        <RecipeGrid recipes={recipes} />
+        {console.log(recipes)}
+        {console.log(shoppingList)}
+
+        <RecipeGrid
+          recipes={recipes}
+          shoppingList={shoppingList}
+          setShoppingList={setShoppingList}
+        />
       </Box>
     </div>
   );
