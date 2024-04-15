@@ -34,7 +34,7 @@ export default function ButtonAppBar({
                 p={4}
                 sx={{ color: theme.palette.primary.contrastText }}
               >
-                Recipe Book
+                Dish Discover
               </Typography>
             </Box>
 

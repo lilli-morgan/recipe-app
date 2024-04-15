@@ -1,36 +1,53 @@
 import { useState } from "react";
-import RecipeGrid from "@/components/RecipeGrid";
-import Button from "@mui/material/Button";
-import { Box, Typography } from "@mui/material";
 import ButtonAppBar from "@/components/ButtonAppBar";
+import RecipeSearch from "@/components/RecipeSearch";
+import ShoppingList from "@/components/ShoppingList";
+import SearchCategoryAccordion from "@/components/SearchCategoryAccordion";
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
+import { theme } from "@/styles/theme";
+import { ThemeProvider } from "@mui/material/styles";
+import "../public/breakfast.png";
+import "../public/lunch.png";
+import "../public/dinner.png";
+import "../public/snack.png";
+import "../public/fish.png";
+import "../public/pasta.png";
+import "../public/beef.png";
+import "../public/beef.png";
+import "../public/vegan.png";
+import "../public/glutenfree.png";
+import "../public/vegetarian.png";
+import "../public/dairyfree.png";
+import "../public/salad.png";
+import "../public/soup.png";
+import "../public/bread.png";
+import "../public/drinks.png";
 
 const DiscoverRecipes = () => {
   const appId = process.env.NEXT_PUBLIC_APPID;
   const apiKey = process.env.NEXT_PUBLIC_APIKEY;
-  const [searchQuery, setSearchQuery] = useState("");
   const [error, setError] = useState(null);
   const [recipes, setRecipes] = useState([]);
   const [showShoppingList, setShowShoppingList] = useState(false);
+  const [shoppingList, setShoppingList] = useState([]);
+  const [expanded, setExpanded] = useState(true);
 
-  const DiscoverTags = [
-    { text: "Breakfast", query: "&mealType=Breakfast" },
-    { text: "Lunch", query: "&mealType=Lunch" },
-    { text: "Dinner", query: "&mealType=Dinner" },
-    { text: "Vegan", query: "&health=vegan" },
-    { text: "Vegetarian", query: "&health=vegetarian" },
-    { text: "Chicken", query: "&q=chicken" },
-  ];
 
   const addTag = (query) => {
-    setSearchQuery(query);
     fetchRecipes(query);
   };
-
-  const url = `https://api.edamam.com/api/recipes/v2?type=public&app_id=${appId}&app_key=${apiKey}`;
+  const handleAccordionToggle = () => {
+    setExpanded(!expanded);
+  };
   const fetchRecipes = async (query) => {
+    setExpanded(false);
+    const url = `https://api.edamam.com/api/recipes/v2?type=public&app_id=${appId}&app_key=${apiKey}${query}`;
+
     try {
-      console.log("RESPONSE: ", url + query);
-      const response = await fetch(url + query);
+      const response = await fetch(url);
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -39,7 +56,6 @@ const DiscoverRecipes = () => {
       const data = await response.json();
       if (data && data.hits) {
         setRecipes(data.hits);
-        console.log(data);
       } else {
         setRecipes([]);
       }
@@ -51,30 +67,33 @@ const DiscoverRecipes = () => {
   };
 
   return (
-    <div>
+    <ThemeProvider theme={theme}>
       <ButtonAppBar
         showShoppingList={showShoppingList}
         setShowShoppingList={setShowShoppingList}
       />
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          flexWrap: "wrap",
-          gap: "10px",
-          padding: "20px",
-        }}
-      >
-        <Typography variant="h3">Explore nutritional information</Typography>
-        {DiscoverTags.map((tag) => (
-          <Button variant="contained" onClick={() => addTag(tag.query)}>
-            {tag.text}
-          </Button>
-        ))}
-        <Button>Find recipes</Button>
-      </Box>
-      <RecipeGrid recipes={recipes} />
-    </div>
+      <SearchCategoryAccordion
+        expanded={expanded}
+        handleAccordionToggle={handleAccordionToggle}
+        addTag={addTag}
+      />
+      {showShoppingList ? (
+        <ShoppingList
+          recipes={recipes}
+          shoppingList={shoppingList}
+          setShoppingList={setShoppingList}
+        />
+      ) : (
+        <RecipeSearch
+          recipes={recipes}
+          setRecipes={setRecipes}
+          shoppingList={shoppingList}
+          setShoppingList={setShoppingList}
+          fetchRecipes={fetchRecipes}
+        />
+      )}
+
+    </ThemeProvider>
   );
 };
 
