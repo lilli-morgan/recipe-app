@@ -18,7 +18,7 @@ export default function ButtonAppBar({
       <Box sx={{ flexGrow: 1 }}>
         <AppBar
           position="static"
-         sx={{backgroundColor: theme.palette.primary.main}}
+         sx={{backgroundColor: theme.palette.primary}}
         >
           <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
             <Box

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import RecipeGrid from "@/components/RecipeGrid";
 import Button from "@mui/material/Button";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import ButtonAppBar from "@/components/ButtonAppBar";
 
 const DiscoverRecipes = () => {
@@ -10,6 +10,7 @@ const DiscoverRecipes = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [error, setError] = useState(null);
   const [recipes, setRecipes] = useState([]);
+  const [showShoppingList, setShowShoppingList] = useState(false);
 
   const DiscoverTags = [
     { text: "Breakfast", query: "&mealType=Breakfast" },
@@ -51,7 +52,10 @@ const DiscoverRecipes = () => {
 
   return (
     <div>
-      <ButtonAppBar />
+      <ButtonAppBar
+        showShoppingList={showShoppingList}
+        setShowShoppingList={setShowShoppingList}
+      />
       <Box
         sx={{
           display: "flex",
@@ -61,11 +65,13 @@ const DiscoverRecipes = () => {
           padding: "20px",
         }}
       >
+        <Typography variant="h3">Explore nutritional information</Typography>
         {DiscoverTags.map((tag) => (
           <Button variant="contained" onClick={() => addTag(tag.query)}>
             {tag.text}
           </Button>
         ))}
+        <Button>Find recipes</Button>
       </Box>
       <RecipeGrid recipes={recipes} />
     </div>
