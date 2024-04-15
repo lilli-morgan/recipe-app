@@ -11,6 +11,9 @@ const RecipeSearch = ({
   shoppingList,
   setShoppingList,
   fetchRecipes,
+  addSavedRecipe,
+  removeSavedRecipe,
+  showSavedRecipes
 }) => {
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -84,6 +87,10 @@ const RecipeSearch = ({
           recipes={recipes}
           shoppingList={shoppingList}
           setShoppingList={setShoppingList}
+          addSavedRecipe={addSavedRecipe}
+          removeSavedRecipe={removeSavedRecipe}
+          showSavedRecipes={showSavedRecipes}
+
         />
       </Box>
     </div>

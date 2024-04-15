@@ -13,19 +13,8 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 
-const RecipeGrid = ({
-  recipes,
-  shoppingList,
-  setShoppingList,
-  addSavedRecipe,
-  removeSavedRecipe,
-  showSavedRecipes,
-}) => {
+const FeaturedRecipes = ({ recipes }) => {
   const [selectedRecipe, setSelectedRecipe] = useState(null);
-
-  const handleAddToShoppingList = (ingredients) => {
-    setShoppingList([...shoppingList, ...ingredients]);
-  };
 
   const handleSeeDetails = (recipe) => {
     setSelectedRecipe(recipe);
@@ -39,14 +28,14 @@ const RecipeGrid = ({
       {recipes &&
         recipes.map((recipe, index) => (
           <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
-            <Card sx={{ maxWidth: 345 }}>
+            <Card sx={{ maxWidth: 300 }}>
               <CardMedia
                 component="img"
                 alt={recipe.recipe.label}
                 height="140"
                 image={recipe.recipe.image}
               />
-              <CardContent>
+              <CardContent sx={{ minHeight: '170px' }}>
                 <Typography gutterBottom variant="h5" component="div">
                   {recipe.recipe.label}
                 </Typography>
@@ -54,26 +43,6 @@ const RecipeGrid = ({
               <CardActions>
                 <Button size="small" onClick={() => handleSeeDetails(recipe)}>
                   See details
-                </Button>
-                {showSavedRecipes ? (
-                  <Button
-                    size="small"
-                    onClick={() => removeSavedRecipe(recipe)}
-                  >
-                    Remove
-                  </Button>
-                ) : (
-                  <Button size="small" onClick={() => addSavedRecipe(recipe)}>
-                    Save
-                  </Button>
-                )}
-                <Button
-                  size="small"
-                  onClick={() =>
-                    handleAddToShoppingList(recipe.recipe.ingredientLines)
-                  }
-                >
-                  + shopping list
                 </Button>
               </CardActions>
             </Card>
@@ -111,4 +80,4 @@ const RecipeGrid = ({
   );
 };
 
-export default RecipeGrid;
+export default FeaturedRecipes;

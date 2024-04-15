@@ -9,66 +9,91 @@ import logo from "../public/logo.png";
 import Link from "next/link";
 import { theme } from "@/styles/theme";
 
-
 export default function ButtonAppBar({
   showShoppingList,
   setShowShoppingList,
+  setShowSavedRecipes,
 }) {
   return (
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar
-          position="static"
-         sx={{backgroundColor: theme.palette.primary}}
-        >
-          <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-            <Box
-              sx={{
-                flexGrow: 1,
-                display: "flex",
-                justifyContent: "flex-start",
-              }}
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static" sx={{ backgroundColor: theme.palette.primary }}>
+        <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: "flex",
+              justifyContent: "flex-start",
+            }}
+          >
+            <Image width={120} height={120} alt="Logo" src={logo} />
+            <Typography
+              variant="h3"
+              p={4}
+              sx={{ color: theme.palette.primary.contrastText }}
             >
-              <Image width={120} height={120} alt="Logo" src={logo} />
-              <Typography
-                variant="h3"
-                p={4}
-                sx={{ color: theme.palette.primary.contrastText }}
-              >
-                Dish Discover
-              </Typography>
-            </Box>
+              Dish Discover
+            </Typography>
+          </Box>
 
-            <Box sx={{ display: "flex", alignItems: "center" }}>
-              <Link href="/" passHref>
-                <Button
-                  variant="contained"
-                  size="medium"
-                  sx={{
-                    mx: 1,
-                    backgroundColor: theme.palette.secondary.dark,
-                    color: theme.palette.secondary.contrastText,
-                  }}
-                  onClick={() => setShowShoppingList(!showShoppingList)}
-                >
-                  {showShoppingList ? "Home" : "Shopping List"}
-                </Button>
-              </Link>
-              <Link href="/discover" passHref>
-                <Button
-                  variant="contained"
-                  size="medium"
-                  sx={{
-                    mx: 1,
-                    backgroundColor: theme.palette.secondary.dark,
-                    color: theme.palette.secondary.contrastText,
-                  }}
-                >
-                  Discover recipes
-                </Button>
-              </Link>
-            </Box>
-          </Toolbar>
-        </AppBar>
-      </Box>
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <Link href="/" passHref>
+              <Button
+                variant="contained"
+                size="medium"
+                sx={{
+                  mx: 1,
+                  backgroundColor: theme.palette.secondary.dark,
+                  color: theme.palette.secondary.contrastText,
+                }}
+              >
+                Home
+              </Button>
+            </Link>
+            <Link href="/discover" passHref>
+              <Button
+                variant="contained"
+                size="medium"
+                sx={{
+                  mx: 1,
+                  backgroundColor: theme.palette.secondary.dark,
+                  color: theme.palette.secondary.contrastText,
+                }}
+                onClick={() => setShowShoppingList(false)}
+              >
+                Discover recipes
+              </Button>
+            </Link>
+            <Link href="/discover" passHref>
+              <Button
+                variant="contained"
+                size="medium"
+                sx={{
+                  mx: 1,
+                  backgroundColor: theme.palette.secondary.dark,
+                  color: theme.palette.secondary.contrastText,
+                }}
+                onClick={() => setShowShoppingList(true)}
+              >
+                Shopping List
+              </Button>
+            </Link>
+            <Link href="/discover" passHref>
+              <Button
+                variant="contained"
+                size="medium"
+                sx={{
+                  mx: 1,
+                  backgroundColor: theme.palette.secondary.dark,
+                  color: theme.palette.secondary.contrastText,
+                }}
+                onClick={() => setShowSavedRecipes(true)}
+              >
+                Saved recipes
+              </Button>
+            </Link>
+          </Box>
+        </Toolbar>
+      </AppBar>
+    </Box>
   );
 }

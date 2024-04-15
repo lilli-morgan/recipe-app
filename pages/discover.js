@@ -34,7 +34,17 @@ const DiscoverRecipes = () => {
   const [showShoppingList, setShowShoppingList] = useState(false);
   const [shoppingList, setShoppingList] = useState([]);
   const [expanded, setExpanded] = useState(true);
+  const [savedRecipes, setSavedRecipes] = useState([]);
+  const [showSavedRecipes, setShowSavedRecipes] = useState(false);
 
+  const addSavedRecipe = (recipe) => {
+    setSavedRecipes([...savedRecipes, recipe]);
+  };
+  const removeSavedRecipe = (recipe) => {
+    setSavedRecipes([
+      ...savedRecipes.filter((r) => r.recipe.label !== recipe.recipe.label),
+    ]);
+  };
 
   const addTag = (query) => {
     fetchRecipes(query);
@@ -44,6 +54,7 @@ const DiscoverRecipes = () => {
   };
   const fetchRecipes = async (query) => {
     setExpanded(false);
+    setShowSavedRecipes(false);
     const url = `https://api.edamam.com/api/recipes/v2?type=public&app_id=${appId}&app_key=${apiKey}${query}`;
 
     try {
@@ -56,6 +67,7 @@ const DiscoverRecipes = () => {
       const data = await response.json();
       if (data && data.hits) {
         setRecipes(data.hits);
+        console.log(data.hits);
       } else {
         setRecipes([]);
       }
@@ -71,6 +83,7 @@ const DiscoverRecipes = () => {
       <ButtonAppBar
         showShoppingList={showShoppingList}
         setShowShoppingList={setShowShoppingList}
+        setShowSavedRecipes={setShowSavedRecipes}
       />
       <SearchCategoryAccordion
         expanded={expanded}
@@ -85,14 +98,16 @@ const DiscoverRecipes = () => {
         />
       ) : (
         <RecipeSearch
-          recipes={recipes}
+          recipes={showSavedRecipes ? savedRecipes : recipes}
           setRecipes={setRecipes}
           shoppingList={shoppingList}
           setShoppingList={setShoppingList}
           fetchRecipes={fetchRecipes}
+          addSavedRecipe={addSavedRecipe}
+          removeSavedRecipe={removeSavedRecipe}
+          showSavedRecipes={showSavedRecipes}
         />
       )}
-
     </ThemeProvider>
   );
 };
