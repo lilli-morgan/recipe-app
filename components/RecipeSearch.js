@@ -4,7 +4,9 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { Box } from "@mui/material";
 import Typography from "@mui/material/Typography";
-
+import { theme } from "@/styles/theme";
+import pot from "../public/pot.png";
+import Image from "next/image";
 const RecipeSearch = ({
   recipes,
   setRecipes,
@@ -54,13 +56,27 @@ const RecipeSearch = ({
         sx={{
           flexGrow: 1,
           textAlign: "center",
-          marginTop: "20px",
-          padding: "20px",
+          marginTop: "5px",
+          padding: "10px",
         }}
       >
-        <Typography variant="h2" padding="30px">
-          Search for a recipe
-        </Typography>
+        <Box
+          sx={{
+            flexGrow: 1,
+            textAlign: "center",
+            marginTop: "5px",
+            padding: "10px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Image width={300} height={300} alt="pot image" src={pot} />
+          <Typography variant="h2" padding="30px">
+            Search for a recipe
+          </Typography>
+        </Box>
         <Box
           sx={{
             display: "flex",
@@ -71,10 +87,10 @@ const RecipeSearch = ({
         >
           <form onSubmit={handleSubmit}>
             <TextField
-              id="outlined-basic"
+              id="outlined-secondary"
               label="Enter a recipe or ingredient"
               variant="outlined"
-              color="success"
+              color="secondary"
               size="medium"
               style={{ marginBottom: "10px" }}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -84,10 +100,12 @@ const RecipeSearch = ({
               variant="contained"
               color="success"
               size="large"
-              style={{
+              sx={{
                 display: "inline",
                 marginLeft: "20px",
                 marginTop: "5px",
+                backgroundColor: theme.palette.primary.main,
+                color: theme.palette.primary.contrastText,
               }}
             >
               Find recipes
@@ -95,6 +113,7 @@ const RecipeSearch = ({
           </form>
           {error && <Typography color="error">{error}</Typography>}
         </Box>
+
         {console.log(recipes)}
         {console.log(shoppingList)}
 

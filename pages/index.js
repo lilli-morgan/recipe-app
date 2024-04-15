@@ -8,6 +8,8 @@ import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
+import { theme } from "@/styles/theme";
+import { ThemeProvider } from "@mui/material/styles";
 
 export default function Home() {
   const [recipes, setRecipes] = useState([]);
@@ -15,22 +17,27 @@ export default function Home() {
   const [showShoppingList, setShowShoppingList] = useState(false);
 
   return (
-    <div>
-      <ButtonAppBar showShoppingList={showShoppingList} setShowShoppingList={setShowShoppingList}/>
-      {showShoppingList ? (
-        <ShoppingList
-          recipes={recipes}
-          shoppingList={shoppingList}
-          setShoppingList={setShoppingList}
+        <ThemeProvider theme={theme}>
+    <div background-color="#F6FEDB">
+        <ButtonAppBar
+          showShoppingList={showShoppingList}
+          setShowShoppingList={setShowShoppingList}
         />
-      ) : (
-        <RecipeSearch
-          recipes={recipes}
-          setRecipes={setRecipes}
-          shoppingList={shoppingList}
-          setShoppingList={setShoppingList}
-        />
-      )}
-    </div>
+        {showShoppingList ? (
+          <ShoppingList
+            recipes={recipes}
+            shoppingList={shoppingList}
+            setShoppingList={setShoppingList}
+          />
+        ) : (
+          <RecipeSearch
+            recipes={recipes}
+            setRecipes={setRecipes}
+            shoppingList={shoppingList}
+            setShoppingList={setShoppingList}
+          />
+        )}
+      </div>
+    </ThemeProvider>
   );
 }

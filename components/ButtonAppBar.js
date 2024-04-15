@@ -4,30 +4,22 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
 import { Typography } from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Image from "next/image";
 import logo from "../public/logo.png";
 import Link from "next/link";
+import { theme } from "@/styles/theme";
 
-const theme = createTheme({
-  palette: {
-    ochre: {
-      main: "#E3D026",
-      light: "#E9DB5D",
-      dark: "#A29415",
-      contrastText: "#242105",
-    },
-  },
-});
 
 export default function ButtonAppBar({
   showShoppingList,
   setShowShoppingList,
 }) {
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <ThemeProvider theme={theme}>
-        <AppBar position="static" color="secondary">
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar
+          position="static"
+         sx={{backgroundColor: theme.palette.primary.main}}
+        >
           <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
             <Box
               sx={{
@@ -36,8 +28,12 @@ export default function ButtonAppBar({
                 justifyContent: "flex-start",
               }}
             >
-              <Image width={100} height={100} alt="Logo" src={logo} />
-              <Typography variant="h2" p={2}>
+              <Image width={120} height={120} alt="Logo" src={logo} />
+              <Typography
+                variant="h3"
+                p={4}
+                sx={{ color: theme.palette.primary.contrastText }}
+              >
                 Recipe Book
               </Typography>
             </Box>
@@ -46,22 +42,33 @@ export default function ButtonAppBar({
               <Link href="/" passHref>
                 <Button
                   variant="contained"
-                  color="secondary"
-                  sx={{ mx: 1 }}
+                  size="medium"
+                  sx={{
+                    mx: 1,
+                    backgroundColor: theme.palette.secondary.dark,
+                    color: theme.palette.secondary.contrastText,
+                  }}
                   onClick={() => setShowShoppingList(!showShoppingList)}
                 >
                   {showShoppingList ? "Home" : "Shopping List"}
                 </Button>
               </Link>
               <Link href="/discover" passHref>
-                <Button variant="contained" color="secondary" sx={{ mx: 1 }}>
+                <Button
+                  variant="contained"
+                  size="medium"
+                  sx={{
+                    mx: 1,
+                    backgroundColor: theme.palette.secondary.dark,
+                    color: theme.palette.secondary.contrastText,
+                  }}
+                >
                   Discover recipes
                 </Button>
               </Link>
             </Box>
           </Toolbar>
         </AppBar>
-      </ThemeProvider>
-    </Box>
+      </Box>
   );
 }

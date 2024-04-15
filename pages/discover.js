@@ -1,6 +1,7 @@
 import { useState } from "react";
 import RecipeGrid from "@/components/RecipeGrid";
 import Button from "@mui/material/Button";
+import { Box } from "@mui/material";
 import ButtonAppBar from "@/components/ButtonAppBar";
 
 const DiscoverRecipes = () => {
@@ -51,11 +52,21 @@ const DiscoverRecipes = () => {
   return (
     <div>
       <ButtonAppBar />
-      {DiscoverTags.map((tag) => (
-        <Button variant="contained" onClick={() => addTag(tag.query)}>
-          {tag.text}
-        </Button>
-      ))}
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          flexWrap: "wrap",
+          gap: "10px",
+          padding: "20px",
+        }}
+      >
+        {DiscoverTags.map((tag) => (
+          <Button variant="contained" onClick={() => addTag(tag.query)}>
+            {tag.text}
+          </Button>
+        ))}
+      </Box>
       <RecipeGrid recipes={recipes} />
     </div>
   );

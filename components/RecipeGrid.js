@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { Grid } from "@mui/material";
+import {
+  Grid,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+} from "@mui/material";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -8,9 +14,18 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 
 const RecipeGrid = ({ recipes, shoppingList, setShoppingList }) => {
+  const [selectedRecipe, setSelectedRecipe] = useState(null);
+
   const handleAddToShoppingList = (ingredients) => {
-  
     setShoppingList([...shoppingList, ...ingredients]);
+  };
+
+  const handleSeeDetails = (recipe) => {
+    setSelectedRecipe(recipe);
+  };
+
+  const handleCloseDetails = () => {
+    setSelectedRecipe(null);
   };
   return (
     <Grid container spacing={3} justifyContent="center">
@@ -28,10 +43,11 @@ const RecipeGrid = ({ recipes, shoppingList, setShoppingList }) => {
                 <Typography gutterBottom variant="h5" component="div">
                   {recipe.recipe.label}
                 </Typography>
-                {/* Add recipe summary here? */}
               </CardContent>
               <CardActions>
-                <Button size="small">See details</Button>
+                <Button size="small" onClick={() => handleSeeDetails(recipe)}>
+                  See details
+                </Button>
                 <Button size="small">Save</Button>
                 <Button
                   size="small"
@@ -45,6 +61,34 @@ const RecipeGrid = ({ recipes, shoppingList, setShoppingList }) => {
             </Card>
           </Grid>
         ))}
+      <Dialog open={selectedRecipe !== null} onClose={() => handleCloseDetails}>
+        <DialogTitle>
+          {selectedRecipe && selectedRecipe.recipe.label}
+        </DialogTitle>
+        <DialogContent>
+          <CardMedia
+            component="img"
+            alt={selectedRecipe && selectedRecipe.recipe.label}
+            height="100"
+            image={selectedRecipe && selectedRecipe.recipe.image}
+          />
+          <Typography variant="body1">
+            You will be linked to:
+            {selectedRecipe && selectedRecipe.recipe.source}
+          </Typography>
+          <Button
+            variant="outlined"
+            onClick={() =>
+              window.open(selectedRecipe && selectedRecipe.recipe.url, "_blank")
+            }
+          >
+            View Recipe
+          </Button>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseDetails}>Close</Button>
+        </DialogActions>
+      </Dialog>
     </Grid>
   );
 };
