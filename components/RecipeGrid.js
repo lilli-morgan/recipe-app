@@ -24,19 +24,20 @@ const RecipeGrid = ({
 }) => {
   const [selectedRecipe, setSelectedRecipe] = useState(null);
 
+  // Function to add a recipe's ingredients to shopping list: 
   const handleAddToShoppingList = (ingredients) => {
     setShoppingList([...shoppingList, ...ingredients]);
   };
-
+// Function to show the recipe details modal: 
   const handleSeeDetails = (recipe) => {
     setSelectedRecipe(recipe);
   };
-
+// To close the modal:
   const handleCloseDetails = () => {
     setSelectedRecipe(null);
   };
   return (
-    <Grid container spacing={3} justifyContent="center">
+    <Grid container spacing={3} sx={{margin: "auto"}}>
       {recipes &&
         recipes.map((recipe, index) => (
           <Grid item key={index} xs={12} sm={6} md={4} lg={3}>

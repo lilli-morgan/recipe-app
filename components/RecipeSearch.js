@@ -7,6 +7,8 @@ import Typography from "@mui/material/Typography";
 import { theme } from "@/styles/theme";
 import { CircularProgress } from "@mui/material";
 
+// Component to fetch recipes from API: 
+
 const RecipeSearch = ({
   recipes,
   shoppingList,
@@ -19,14 +21,16 @@ const RecipeSearch = ({
 }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(false);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     fetchRecipes(
       `&q=${searchQuery}&dishType=Biscuits%20and%20cookies&dishType=Bread&dishType=Main%20course&dishType=Salad&dishType=Sandwiches&dishType=Side%20dish&dishType=Soup`
     );
   };
+  
   return (
-    <div>
+    <Box>
       <Box
         sx={{
           flexGrow: 1,
@@ -67,8 +71,13 @@ const RecipeSearch = ({
                 display: "inline",
                 marginLeft: "20px",
                 marginTop: "5px",
-                backgroundColor: theme.palette.primary.main,
-                color: theme.palette.primary.contrastText,
+                backgroundColor: theme.palette.secondary.main,
+                color: theme.palette.secondary.contrastText,
+                fontSize: "20px",
+                "&:hover": {
+                  backgroundColor: "secondary.light",
+                  color: "primary.contrastText"
+                }
               }}
             >
               Find recipes
@@ -86,7 +95,7 @@ const RecipeSearch = ({
           showSavedRecipes={showSavedRecipes}
         />
       </Box>
-    </div>
+    </Box>
   );
 };
 export default RecipeSearch;
