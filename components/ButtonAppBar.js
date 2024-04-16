@@ -5,9 +5,9 @@ import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
 import Image from "next/image";
 import logo from "../public/logo.png";
-import heading from "../public/heading.png";
 import Link from "next/link";
 import { theme } from "@/styles/theme";
+import Typography from "@mui/material/Typography";
 
 export default function ButtonAppBar({
   setShowShoppingList,
@@ -25,12 +25,9 @@ export default function ButtonAppBar({
             }}
           >
             <Image width={120} height={120} alt="Logo" src={logo} />
-            <Image
-              width={300}
-              height={100}
-              alt="Dish Discover heading"
-              src={heading}
-            />
+            <Typography variant="h3" marginTop="25px">
+              Dish Discover
+            </Typography>
           </Box>
 
           <Box sx={{ display: "flex", alignItems: "center" }}>

@@ -55,8 +55,8 @@ export default function SearchCategoryTags({ addTag }) {
         padding: "20px",
       }}
     >
-      <Grid container spacing={2} sx={{}}>
-        <Grid item xs={6}>
+      <Grid container spacing={2}>
+        <Grid item xs={12} md={6}>
           <Box
             p={4}
             border={3}
@@ -96,7 +96,7 @@ export default function SearchCategoryTags({ addTag }) {
             </Stack>
           </Box>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12} md={6}>
           <Box
             p={4}
             border={3}
@@ -135,7 +135,7 @@ export default function SearchCategoryTags({ addTag }) {
             </Stack>
           </Box>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12} md={6}>
           <Box
             p={4}
             border={3}
@@ -174,7 +174,7 @@ export default function SearchCategoryTags({ addTag }) {
             </Stack>
           </Box>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12} md={6}>
           <Box
             p={4}
             border={3}
