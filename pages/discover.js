@@ -37,6 +37,8 @@ const DiscoverRecipes = () => {
   const [savedRecipes, setSavedRecipes] = useState([]);
   const [showSavedRecipes, setShowSavedRecipes] = useState(false);
 
+  // Functions to add a saved recipe and remove a saved recipe:
+
   const addSavedRecipe = (recipe) => {
     setSavedRecipes([...savedRecipes, recipe]);
   };
@@ -46,13 +48,18 @@ const DiscoverRecipes = () => {
     ]);
   };
 
+  // Function that sets search query = the category (tag) clicked on:
   const addTag = (query) => {
     fetchRecipes(query);
   };
+  // Function to toggle between expanded and collapsed accordion:
   const handleAccordionToggle = () => {
     setExpanded(!expanded);
   };
+
+  // Function to fetch recipes from the API:
   const fetchRecipes = async (query) => {
+
     setExpanded(false);
     setShowSavedRecipes(false);
     const url = `https://api.edamam.com/api/recipes/v2?type=public&app_id=${appId}&app_key=${apiKey}${query}`;
@@ -65,13 +72,14 @@ const DiscoverRecipes = () => {
       }
 
       const data = await response.json();
+
       if (data && data.hits) {
         setRecipes(data.hits);
         console.log(data.hits);
+        setError(null);
       } else {
         setRecipes([]);
       }
-      setError(null);
     } catch (error) {
       console.log("Failed to fetch recipe data: ", error);
       setError("Failed to fetch recipes. Please try again later.");
@@ -81,7 +89,6 @@ const DiscoverRecipes = () => {
   return (
     <ThemeProvider theme={theme}>
       <ButtonAppBar
-        showShoppingList={showShoppingList}
         setShowShoppingList={setShowShoppingList}
         setShowSavedRecipes={setShowSavedRecipes}
       />

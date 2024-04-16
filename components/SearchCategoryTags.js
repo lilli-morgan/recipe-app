@@ -55,21 +55,27 @@ export default function SearchCategoryTags({ addTag }) {
         padding: "20px",
       }}
     >
-      <Grid container spacing={2}>
+      <Grid container spacing={2} sx={{}}>
         <Grid item xs={6}>
-          <Box p={4} border={1} borderColor="secondary.main" borderRadius={2}>
+          <Box
+            p={4}
+            border={3}
+            borderColor="primary.dark"
+            borderRadius={2}
+            sx={{ backgroundColor: "primary.main" }}
+          >
             <Typography variant="h4" mb={2}>
               Search by ingredient
             </Typography>
 
             <Stack direction="row" spacing={2}>
-              {IngredientTags.map((tag, index) => (
+              {IngredientTags.map((tag) => (
                 <Button
                   variant="contained"
                   onClick={() => addTag(tag.query)}
                   fullWidth
                   sx={{
-                    backgroundColor: "transparent",
+                    backgroundColor: "#FAF3DD",
                     padding: 0,
                     "&:hover": {
                       backgroundColor: "primary.light",
@@ -91,7 +97,13 @@ export default function SearchCategoryTags({ addTag }) {
           </Box>
         </Grid>
         <Grid item xs={6}>
-          <Box p={4} border={1} borderColor="secondary.main" borderRadius={2}>
+          <Box
+            p={4}
+            border={3}
+            borderColor="primary.dark"
+            borderRadius={2}
+            sx={{ backgroundColor: "primary.main" }}
+          >
             <Typography variant="h4" mb={2}>
               Search by meal
             </Typography>
@@ -102,7 +114,7 @@ export default function SearchCategoryTags({ addTag }) {
                   onClick={() => addTag(tag.query)}
                   fullWidth
                   sx={{
-                    backgroundColor: "transparent",
+                    backgroundColor: "#FAF3DD",
                     padding: 0,
                     "&:hover": {
                       backgroundColor: "primary.light",
@@ -124,7 +136,13 @@ export default function SearchCategoryTags({ addTag }) {
           </Box>
         </Grid>
         <Grid item xs={6}>
-          <Box p={4} border={1} borderColor="secondary.main" borderRadius={2}>
+          <Box
+            p={4}
+            border={3}
+            borderColor="primary.dark"
+            borderRadius={2}
+            sx={{ backgroundColor: "primary.main" }}
+          >
             <Typography variant="h4" mb={2}>
               Search by dietary requirements
             </Typography>
@@ -135,7 +153,7 @@ export default function SearchCategoryTags({ addTag }) {
                   onClick={() => addTag(tag.query)}
                   fullWidth
                   sx={{
-                    backgroundColor: "transparent",
+                    backgroundColor: "#FAF3DD",
                     padding: 0,
                     "&:hover": {
                       backgroundColor: "primary.light",
@@ -157,7 +175,13 @@ export default function SearchCategoryTags({ addTag }) {
           </Box>
         </Grid>
         <Grid item xs={6}>
-          <Box p={4} border={1} borderColor="secondary.main" borderRadius={2}>
+          <Box
+            p={4}
+            border={3}
+            borderColor="primary.dark"
+            borderRadius={2}
+            sx={{ backgroundColor: "primary.main" }}
+          >
             <Typography variant="h4" mb={2}>
               Search by dish type
             </Typography>
@@ -168,7 +192,7 @@ export default function SearchCategoryTags({ addTag }) {
                   onClick={() => addTag(tag.query)}
                   fullWidth
                   sx={{
-                    backgroundColor: "transparent",
+                    backgroundColor: "#FAF3DD",
                     padding: 0,
                     "&:hover": {
                       backgroundColor: "primary.light",
