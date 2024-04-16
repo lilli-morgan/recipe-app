@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import { Typography } from "@mui/material";
 import Image from "next/image";
 import logo from "../public/logo.png";
+import heading from "../public/heading.png";
 import Link from "next/link";
 import { theme } from "@/styles/theme";
 
@@ -26,13 +27,7 @@ export default function ButtonAppBar({
             }}
           >
             <Image width={120} height={120} alt="Logo" src={logo} />
-            <Typography
-              variant="h3"
-              p={4}
-              sx={{ color: theme.palette.primary.contrastText }}
-            >
-              Dish Discover
-            </Typography>
+            <Image width={300} height={100} alt="Dish Discover heading" src={heading} />
           </Box>
 
           <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -44,7 +39,9 @@ export default function ButtonAppBar({
                   mx: 1,
                   backgroundColor: theme.palette.secondary.dark,
                   color: theme.palette.secondary.contrastText,
-                }}
+                  "&:hover": {
+                    backgroundColor: "secondary.light",
+                }}}
               >
                 Home
               </Button>
@@ -57,6 +54,9 @@ export default function ButtonAppBar({
                   mx: 1,
                   backgroundColor: theme.palette.secondary.dark,
                   color: theme.palette.secondary.contrastText,
+                  "&:hover": {
+                    backgroundColor: "secondary.light",
+                }
                 }}
                 onClick={() => setShowShoppingList(false)}
               >
@@ -71,6 +71,9 @@ export default function ButtonAppBar({
                   mx: 1,
                   backgroundColor: theme.palette.secondary.dark,
                   color: theme.palette.secondary.contrastText,
+                  "&:hover": {
+                    backgroundColor: "secondary.light",
+                }
                 }}
                 onClick={() => setShowShoppingList(true)}
               >
@@ -85,6 +88,9 @@ export default function ButtonAppBar({
                   mx: 1,
                   backgroundColor: theme.palette.secondary.dark,
                   color: theme.palette.secondary.contrastText,
+                  "&:hover": {
+                    backgroundColor: "secondary.light",
+                }
                 }}
                 onClick={() => setShowSavedRecipes(true)}
               >

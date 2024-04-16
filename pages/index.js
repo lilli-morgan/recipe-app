@@ -8,8 +8,9 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import { theme } from "@/styles/theme";
 import { ThemeProvider } from "@mui/material/styles";
-import { Typography, Grid, Button } from "@mui/material";
+import { Typography, Grid, Button, Box } from "@mui/material";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   const [recipes, setRecipes] = useState([]);
@@ -20,7 +21,7 @@ export default function Home() {
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
-        const url = `https://api.edamam.com/api/recipes/v2?&type=public&app_id=${appId}&app_key=${apiKey}&random=true&dishType=Biscuits%20and%20cookies&dishType=Bread&dishType=Main%20course&dishType=Salad&dishType=Sandwiches&dishType=Side%20dish&dishType=Soup`;
+        const url = `https://api.edamam.com/api/recipes/v2?&type=public&app_id=${appId}&app_key=${apiKey}&random=True&dishType=Biscuits%20and%20cookies&dishType=Bread&dishType=Main%20course&dishType=Salad&dishType=Sandwiches&dishType=Side%20dish&dishType=Soup`;
 
         console.log("Fetching recipes...");
 
@@ -53,17 +54,63 @@ export default function Home() {
         showShoppingList={showShoppingList}
         setShowShoppingList={setShowShoppingList}
       />
-      <Grid container spacing={1}>
-        <Grid item xs={4} >
-          <Image width={600} height={600} alt="pot image" src={pot} />
+      <Grid container spacing={2} alignItems="center">
+        <Grid item xs={12} md={6}>
+          <Image width={500} height={500} alt="pot image" src={pot} />
+          <Typography variant="h1" gutterBottom>
+            Explore thousands of delicious recipes
+          </Typography>
+          <Typography variant="h5" gutterBottom>
+            Find recipe insoration, save your favorites, and create a shopping list.
+          </Typography>
         </Grid>
-        <Grid xs={6} >
-        <Grid  xs={9} >
-          <Typography variant="h1">Discover recipes</Typography>
+        <Grid item xs={12} md={6}>
+          <Grid
+            container
+            spacing={2}
+            direction="column"
+            sx={{
+              borderRadius: "2px",
+              border: "1px solid #4F1271",
+              boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+              padding: "20px",
+            }}
+          >
+            <Grid
+              item
+              xs={12}
+              sx={{
+                borderRadius: "2px",
+                border: "1px solid #ccc",
+                boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+                padding: "20px",
+              }}
+            >
+              <Typography variant="h4">Featured recipes</Typography>
+            </Grid>
+            <Grid item>
+              <FeaturedRecipes recipes={recipes} />
+            </Grid>
           </Grid>
-
-          <FeaturedRecipes recipes={recipes} />
-          <Button variant="contained" size="large" sx={{backgroundColor: theme.palette.secondary.main, color: theme.palette.secondary.contrastText}}>Discover more recipes</Button>
+          <Grid item>
+            <Box mt={5}>
+              <Link href="/discover">
+                <Button
+                  variant="contained"
+                  size="large"
+                  sx={{
+                    backgroundColor: theme.palette.secondary.main,
+                    color: theme.palette.secondary.contrastText,
+                    "&:hover": {
+                      backgroundColor: theme.palette.secondary.dark,
+                    },
+                  }}
+                >
+                  Search for more recipes
+                </Button>
+              </Link>
+            </Box>
+          </Grid>
         </Grid>
       </Grid>
     </ThemeProvider>

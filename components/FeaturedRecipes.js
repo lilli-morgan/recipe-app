@@ -24,7 +24,7 @@ const FeaturedRecipes = ({ recipes }) => {
     setSelectedRecipe(null);
   };
   return (
-    <Grid container spacing={3} justifyContent="center">
+    <Grid container spacing={1} justifyContent="center">
       {recipes &&
         recipes.map((recipe, index) => (
           <Grid item key={index} xs={12} sm={6} md={4} lg={3}>

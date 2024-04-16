@@ -2,7 +2,7 @@ import Button from "@mui/material/Button";
 import { Box, Typography, Grid } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
-export default function SearchCategoryTags({addTag}) {
+export default function SearchCategoryTags({ addTag }) {
   const MealTags = [
     {
       text: "Breakfast",
@@ -57,7 +57,7 @@ export default function SearchCategoryTags({addTag}) {
     >
       <Grid container spacing={2}>
         <Grid item xs={6}>
-          <Box p={4}>
+          <Box p={4} border={1} borderColor="secondary.main" borderRadius={2}>
             <Typography variant="h4" mb={2}>
               Search by ingredient
             </Typography>
@@ -70,12 +70,10 @@ export default function SearchCategoryTags({addTag}) {
                   fullWidth
                   sx={{
                     backgroundColor: "transparent",
-                    border: "none",
                     padding: 0,
-                    boxShadow: "none",
                     "&:hover": {
-                      backgroundColor: "transparent",
-                      boxShadow: "none",
+                      backgroundColor: "primary.light",
+                      color: "secondary.dark",
                     },
                   }}
                 >
@@ -93,7 +91,7 @@ export default function SearchCategoryTags({addTag}) {
           </Box>
         </Grid>
         <Grid item xs={6}>
-          <Box p={4}>
+          <Box p={4} border={1} borderColor="secondary.main" borderRadius={2}>
             <Typography variant="h4" mb={2}>
               Search by meal
             </Typography>
@@ -105,12 +103,10 @@ export default function SearchCategoryTags({addTag}) {
                   fullWidth
                   sx={{
                     backgroundColor: "transparent",
-                    border: "none",
                     padding: 0,
-                    boxShadow: "none",
                     "&:hover": {
-                      backgroundColor: "transparent",
-                      boxShadow: "none",
+                      backgroundColor: "primary.light",
+                      color: "secondary.dark",
                     },
                   }}
                 >
@@ -128,7 +124,7 @@ export default function SearchCategoryTags({addTag}) {
           </Box>
         </Grid>
         <Grid item xs={6}>
-          <Box p={4}>
+          <Box p={4} border={1} borderColor="secondary.main" borderRadius={2}>
             <Typography variant="h4" mb={2}>
               Search by dietary requirements
             </Typography>
@@ -140,12 +136,10 @@ export default function SearchCategoryTags({addTag}) {
                   fullWidth
                   sx={{
                     backgroundColor: "transparent",
-                    border: "none",
                     padding: 0,
-                    boxShadow: "none",
                     "&:hover": {
-                      backgroundColor: "transparent",
-                      boxShadow: "none",
+                      backgroundColor: "primary.light",
+                      color: "secondary.dark",
                     },
                   }}
                 >
@@ -163,7 +157,7 @@ export default function SearchCategoryTags({addTag}) {
           </Box>
         </Grid>
         <Grid item xs={6}>
-          <Box p={4}>
+          <Box p={4} border={1} borderColor="secondary.main" borderRadius={2}>
             <Typography variant="h4" mb={2}>
               Search by dish type
             </Typography>
@@ -175,12 +169,10 @@ export default function SearchCategoryTags({addTag}) {
                   fullWidth
                   sx={{
                     backgroundColor: "transparent",
-                    border: "none",
                     padding: 0,
-                    boxShadow: "none",
                     "&:hover": {
-                      backgroundColor: "transparent",
-                      boxShadow: "none",
+                      backgroundColor: "primary.light",
+                      color: "secondary.dark",
                     },
                   }}
                 >

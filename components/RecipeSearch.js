@@ -5,6 +5,7 @@ import Button from "@mui/material/Button";
 import { Box } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { theme } from "@/styles/theme";
+import { CircularProgress } from "@mui/material";
 
 const RecipeSearch = ({
   recipes,
@@ -13,12 +14,11 @@ const RecipeSearch = ({
   fetchRecipes,
   addSavedRecipe,
   removeSavedRecipe,
-  showSavedRecipes
+  showSavedRecipes,
+  error,
 }) => {
   const [searchQuery, setSearchQuery] = useState("");
-
-  const [error, setError] = useState(null);
-
+  const [loading, setLoading] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
     fetchRecipes(
@@ -33,26 +33,19 @@ const RecipeSearch = ({
           textAlign: "center",
           marginTop: "5px",
           padding: "10px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
-        <Box
-          sx={{
-            flexGrow: 1,
-            textAlign: "center",
-            marginTop: "5px",
-            padding: "10px",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        ></Box>
         <Box
           sx={{
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             marginBottom: "20px",
+            marginTop: "2px",
           }}
         >
           <form onSubmit={handleSubmit}>
@@ -81,6 +74,7 @@ const RecipeSearch = ({
               Find recipes
             </Button>
           </form>
+          {loading && <CircularProgress />} {/* Show loading indicator */}
           {error && <Typography color="error">{error}</Typography>}
         </Box>
         <RecipeGrid
@@ -90,7 +84,6 @@ const RecipeSearch = ({
           addSavedRecipe={addSavedRecipe}
           removeSavedRecipe={removeSavedRecipe}
           showSavedRecipes={showSavedRecipes}
-
         />
       </Box>
     </div>

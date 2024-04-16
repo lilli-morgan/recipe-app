@@ -1,5 +1,5 @@
 import Typography from "@mui/material/Typography";
-import { Box } from "@mui/material";
+import { Box, Paper } from "@mui/material";
 
 const ShoppingList = ({ shoppingList, setShoppingList }) => {
   return (
@@ -10,31 +10,30 @@ const ShoppingList = ({ shoppingList, setShoppingList }) => {
         marginTop: "20px",
       }}
     >
-      <Box
+     <Paper
+        elevation={3}
         sx={{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          border: "2px solid",
           padding: "20px",
           marginTop: "20px",
           borderRadius: "10px",
-          boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.5)",
           width: "40%",
         }}
       >
         <Typography variant="h4" sx={{ marginBottom: "20px" }}>
           Shopping List
         </Typography>
-        <ul>
-          {shoppingList.map((item) => (
-            <li style={{ listStyleType: "none", marginBottom: "10px" }}>
+        <ul style={{ padding: 0, margin: 0 }}>
+          {shoppingList.map((item, index) => (
+            <li key={index} style={{ marginBottom: "10px" }}>
               {item}
             </li>
           ))}
         </ul>
-      </Box>
+      </Paper>
     </Box>
   );
 };

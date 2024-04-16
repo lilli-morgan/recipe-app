@@ -106,6 +106,7 @@ const DiscoverRecipes = () => {
           addSavedRecipe={addSavedRecipe}
           removeSavedRecipe={removeSavedRecipe}
           showSavedRecipes={showSavedRecipes}
+          error={error}
         />
       )}
     </ThemeProvider>

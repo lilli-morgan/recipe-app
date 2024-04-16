@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {
   Grid,
+  Box,
   Dialog,
   DialogTitle,
   DialogContent,
@@ -51,27 +52,69 @@ const RecipeGrid = ({
                   {recipe.recipe.label}
                 </Typography>
               </CardContent>
-              <CardActions>
-                <Button size="small" onClick={() => handleSeeDetails(recipe)}>
-                  See details
+              <CardActions sx={{ backgroundColor: "primary.main" }}>
+                <Button
+                  size="medium"
+                  onClick={() => handleSeeDetails(recipe)}
+                  sx={{
+                    color: "secondary.dark",
+                    border: "1px solid",
+                    borderColor: "secondary.dark",
+                    borderRadius: "4px",
+                    "&:hover": {
+                      backgroundColor: "secondary.light",
+                    },
+                  }}
+                >
+                  Details
                 </Button>
                 {showSavedRecipes ? (
                   <Button
-                    size="small"
+                    size="medium"
                     onClick={() => removeSavedRecipe(recipe)}
+                    sx={{
+                      color: "secondary.dark",
+                      border: "1px solid",
+                      borderColor: "secondary.dark",
+                      borderRadius: "4px",
+                      "&:hover": {
+                        backgroundColor: "secondary.light",
+                      },
+                    }}
                   >
                     Remove
                   </Button>
                 ) : (
-                  <Button size="small" onClick={() => addSavedRecipe(recipe)}>
+                  <Button
+                    size="medium"
+                    onClick={() => addSavedRecipe(recipe)}
+                    sx={{
+                      color: "secondary.dark",
+                      border: "1px solid",
+                      borderColor: "secondary.dark",
+                      borderRadius: "4px",
+                      "&:hover": {
+                        backgroundColor: "secondary.light",
+                      },
+                    }}
+                  >
                     Save
                   </Button>
                 )}
                 <Button
-                  size="small"
+                  size="medium"
                   onClick={() =>
                     handleAddToShoppingList(recipe.recipe.ingredientLines)
                   }
+                  sx={{
+                    color: "secondary.dark",
+                    border: "1px solid",
+                    borderColor: "secondary.dark",
+                    borderRadius: "4px",
+                    "&:hover": {
+                      backgroundColor: "secondary.light",
+                    },
+                  }}
                 >
                   + shopping list
                 </Button>
@@ -80,18 +123,21 @@ const RecipeGrid = ({
           </Grid>
         ))}
       <Dialog open={selectedRecipe !== null} onClose={() => handleCloseDetails}>
-        <DialogTitle>
+        <DialogTitle sx={{ fontWeight: "bold", fontSize: "35px" }}>
           {selectedRecipe && selectedRecipe.recipe.label}
         </DialogTitle>
-        <DialogContent>
+        <DialogContent sx={{ textAlign: "center" }}>
           <CardMedia
             component="img"
             alt={selectedRecipe && selectedRecipe.recipe.label}
             height="100"
             image={selectedRecipe && selectedRecipe.recipe.image}
+            sx={{ marginBottom: "20px" }}
           />
-          <Typography variant="body1">
-            You will be linked to:
+          <Typography variant="h5" sx={{ marginBottom: "10px" }}>
+            You will be linked to: <br />
+          </Typography>
+          <Typography variant="h5" sx={{marginBottom: "20px", fontWeight: "fontWeightMedium"}}>
             {selectedRecipe && selectedRecipe.recipe.source}
           </Typography>
           <Button
@@ -99,12 +145,34 @@ const RecipeGrid = ({
             onClick={() =>
               window.open(selectedRecipe && selectedRecipe.recipe.url, "_blank")
             }
+            sx={{
+              color: "secondary.dark",
+              border: "1px solid",
+              borderColor: "secondary.dark",
+              borderRadius: "4px",
+              "&:hover": {
+                backgroundColor: "secondary.light",
+              },
+            }}
           >
             View Recipe
           </Button>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleCloseDetails}>Close</Button>
+          <Button
+            onClick={handleCloseDetails}
+            sx={{
+              color: "secondary.dark",
+              border: "1px solid",
+              borderColor: "secondary.dark",
+              borderRadius: "4px",
+              "&:hover": {
+                backgroundColor: "secondary.light",
+              },
+            }}
+          >
+            Close
+          </Button>
         </DialogActions>
       </Dialog>
     </Grid>
